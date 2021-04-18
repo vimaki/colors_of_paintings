@@ -34,16 +34,6 @@ from typing import Any, List, Tuple
 
 from image_creation import create_output_image
 
-# Set the arguments available from the command line
-parser = argparse.ArgumentParser(description='Get primary colors from an image')
-parser.add_argument('--image_path', default='examples/input_1.png',
-                    help='The path to the image to be processed')
-parser.add_argument('--number_of_colors', type=int, default=5,
-                    help='The number of primary colors to be found')
-parser.add_argument('-i', '--create_image', action='store_false',
-                    help='Flag indicating the need to create an image')
-args = parser.parse_args()
-
 
 def get_image(image_path: str) -> NDArray[(Any, Any, 3), np.int]:
     """Read an image in RGB color space."""
@@ -141,6 +131,16 @@ def get_primary_colors(image: str, number_of_colors: int = 5,
 
 
 def main():
+    # Set the arguments available from the command line
+    parser = argparse.ArgumentParser(description='Get primary colors from an image')
+    parser.add_argument('--image_path', default='examples/input_1.png',
+                        help='The path to the image to be processed')
+    parser.add_argument('--number_of_colors', type=int, default=5,
+                        help='The number of primary colors to be found')
+    parser.add_argument('-i', '--create_image', action='store_false',
+                        help='Flag indicating the need to create an image')
+    args = parser.parse_args()
+
     get_primary_colors(args.image_path, args.number_of_colors,
                        args.create_image)
 
