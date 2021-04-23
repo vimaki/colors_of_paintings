@@ -67,6 +67,8 @@ def calculate_image_size(image: NDArray[(Any, Any, 3), np.int],
     """
 
     height, width = image.shape[0], image.shape[1]
+    if max(height, width) < max_size:
+        return height, width
     if height > width:
         return max_size, int(max_size * (width / height))
     else:
