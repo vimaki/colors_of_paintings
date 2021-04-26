@@ -27,6 +27,7 @@ nearest_color.pickle or nearest_color_by_rgb.py
 import argparse
 import cv2
 import numpy as np
+import re
 from collections import Counter
 from nptyping import NDArray
 from sklearn.cluster import KMeans
@@ -88,10 +89,11 @@ def get_primary_colors(image: str, number_of_colors: int = 5,
     Parameters
     ----------
     image : str
-        The path to the image to be processed.
+        The path to the image to be processed. The image format must be
+        supported by library OpenCV.
     number_of_colors : int, optional
-        The number of primary colors to extract from the image (default
-        is 5 colors).
+        The number of primary colors to extract from the image. The number
+        of found colors must be in the range from 1 to 20. The default is 5.
     create_image : bool, optional
         If this is set to True (default value), this function will
         generate an image that visualizes the distribution of the
@@ -105,6 +107,26 @@ def get_primary_colors(image: str, number_of_colors: int = 5,
         represents its RGB value.
     """
 
+    # Checking the types and values of the arguments
+    opencv_readable_formats = ['bmp', 'dib', 'jpeg', 'jpg', 'jpe', 'jp2', 'png',
+                               'webp', 'pbm', 'pgm', 'ppm', 'pxm', 'pnm', 'pfm',
+                               'sr', 'ras', 'tiff', 'tif', 'exr', 'hdr', 'pic']
+    formats_str = '|'.join(opencv_readable_formats)
+
+    if not isinstance(image, str):
+        raise TypeError('The first argument must be a string')
+    if not re.fullmatch(r'.+\.({})$'.format(formats_str), image):
+        raise ValueError('The image format must be supported by OpenCV')
+
+    if not isinstance(number_of_colors, int):
+        raise TypeError('The second argument must be an integer')
+    if not 1 <= number_of_colors <= 20:
+        raise ValueError('The second argument must be in the range of 1 to 20')
+
+    if not isinstance(create_image, bool):
+        raise TypeError('The third argument must be a boolean value')
+
+    # Convert the image into a numpy array
     image = get_image(image)
 
     # Reducing the size of the image to decrease the calculation time
