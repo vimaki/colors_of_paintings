@@ -35,6 +35,12 @@ from typing import Any, List, Tuple
 
 from image_creation import create_output_image
 
+TYPE_ERROR_IMAGE = 'The first argument must be a string'
+VALUE_ERROR_IMAGE = 'The image format must be supported by OpenCV'
+TYPE_ERROR_NUMBER_OF_COLORS = 'The second argument must be an integer'
+VALUE_ERROR_NUMBER_OF_COLORS = 'The second argument must be in the range of 1 to 20'
+TYPE_ERROR_CREATE_IMAGE = 'The third argument must be a boolean value'
+
 
 def get_image(image_path: str) -> NDArray[(Any, Any, 3), np.int]:
     """Read an image in RGB color space."""
@@ -114,17 +120,17 @@ def get_primary_colors(image: str, number_of_colors: int = 5,
     formats_str = '|'.join(opencv_readable_formats)
 
     if not isinstance(image, str):
-        raise TypeError('The first argument must be a string')
+        raise TypeError(TYPE_ERROR_IMAGE)
     if not re.fullmatch(r'.+\.({})$'.format(formats_str), image):
-        raise ValueError('The image format must be supported by OpenCV')
+        raise ValueError(VALUE_ERROR_IMAGE)
 
-    if not isinstance(number_of_colors, int):
-        raise TypeError('The second argument must be an integer')
+    if type(number_of_colors) is not int:
+        raise TypeError(TYPE_ERROR_NUMBER_OF_COLORS)
     if not 1 <= number_of_colors <= 20:
-        raise ValueError('The second argument must be in the range of 1 to 20')
+        raise ValueError(VALUE_ERROR_NUMBER_OF_COLORS)
 
     if not isinstance(create_image, bool):
-        raise TypeError('The third argument must be a boolean value')
+        raise TypeError(TYPE_ERROR_CREATE_IMAGE)
 
     # Convert the image into a numpy array
     image = get_image(image)
