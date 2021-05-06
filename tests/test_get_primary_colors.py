@@ -1,4 +1,5 @@
 import pytest
+
 from get_primary_colors import *
 
 images = ['tests/infrastructure/image_1.png',

@@ -12,6 +12,8 @@ create_labels
     Concatenates different color information into a single label.
 plot_color_bar
     Creating an image with the results of calculating the primary colors.
+create_output_image:
+    Creating an image with the results of calculating the primary colors.
 
 References
 ----------
@@ -27,7 +29,7 @@ import pickle
 import webcolors
 from matplotlib.patches import Patch
 from nptyping import NDArray
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 
 def rgb2hex(color: NDArray[(3,), np.int]) -> str:
@@ -62,7 +64,7 @@ def get_colour_name(requested_colour: NDArray[(3,), np.int]) -> str:
         with open('nearest_color.pickle', 'rb') as f:
             nearest_color = pickle.load(f)
             color_name = nearest_color.predict([requested_colour])[0]
-    return color_name
+    return color_name.title()
 
 
 def get_color_features(cluster_capacity: Dict[int, int],
@@ -108,7 +110,7 @@ def get_color_features(cluster_capacity: Dict[int, int],
 def create_labels(ratio_colors: List[float], hex_colors: List[str],
                   name_colors: List[str]) -> List[str]:
     """Concatenates different color information into a single label."""
-    percent_colors = list(map(lambda x: str(round(x * 100, 1)) + ' %',
+    percent_colors = list(map(lambda x: '{} %'.format(round(x * 100, 1)),
                               ratio_colors))
     labels = list(map(' - '.join,
                       zip(percent_colors, hex_colors, name_colors)))
@@ -148,7 +150,8 @@ def plot_color_bar(ratio_colors: List[float],
 
 def create_output_image(image: NDArray[(Any, Any, 3), np.int],
                         cluster_capacity: Dict[int, int],
-                        center_colors: NDArray[(Any, 3), np.int]) -> None:
+                        center_colors: NDArray[(Any, 3), np.int],
+                        image_path: Optional[str] = None) -> None:
     """Creating an image with the results of calculating the primary colors.
 
     Creates an image which is consisting of three parts arranged
@@ -169,6 +172,10 @@ def create_output_image(image: NDArray[(Any, Any, 3), np.int],
     center_colors : np.ndarray((N, 3), dtype=int)
         A container is storing the RGB values of each of the primary
         colors of the image (number of colors equals N).
+    image_path : None (default) or str
+        The path where the resulting image will be saved.
+        If the value None (default) is passed, the image will be saved
+        in 'examples/output_1.png'.
 
     Returns
     -------
@@ -202,5 +209,8 @@ def create_output_image(image: NDArray[(Any, Any, 3), np.int],
                frameon=False, fontsize='large', ncol=column_number)
 
     plt.tight_layout(h_pad=5.0)
-    plt.savefig('examples/output_1.png')
+    if image_path is None:
+        plt.savefig('examples/output_1.png')
+    else:
+        plt.savefig(image_path)
     plt.close(output_image)
