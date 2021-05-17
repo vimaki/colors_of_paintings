@@ -31,7 +31,7 @@ import re
 from collections import Counter
 from nptyping import NDArray
 from sklearn.cluster import KMeans
-from typing import Any, List, Tuple
+from typing import Any, List, Optional, Tuple
 
 from image_creation import create_output_image
 
@@ -83,7 +83,9 @@ def calculate_image_size(image: NDArray[(Any, Any, 3), np.int],
 
 
 def get_primary_colors(image: str, number_of_colors: int = 5,
-                       create_image: bool = True) -> List[NDArray[(3,), np.int]]:
+                       create_image: bool = True,
+                       output_image_path: Optional[str] = None) \
+        -> List[NDArray[(3,), np.int]]:
     """Get primary colors from an image.
 
     Extracts several (a number equal to the parameter number_of_colors)
@@ -104,6 +106,10 @@ def get_primary_colors(image: str, number_of_colors: int = 5,
         If this is set to True (default value), this function will
         generate an image that visualizes the distribution of the
         input picture's primary colors.
+    output_image_path: None (default) or str
+        The path where the resulting image will be saved.
+        If the value None (default) is passed, the image will be saved
+        in 'examples/output_1.png'.
 
     Returns
     -------
@@ -155,7 +161,8 @@ def get_primary_colors(image: str, number_of_colors: int = 5,
     rgb_colors = [center_colors[i] for i in cluster_capacity.keys()]
 
     if create_image:
-        create_output_image(image, cluster_capacity, center_colors)
+        create_output_image(image, cluster_capacity,
+                            center_colors, output_image_path)
     
     return rgb_colors
 
@@ -169,10 +176,13 @@ def main():
                         help='The number of primary colors to be found')
     parser.add_argument('-i', '--create_image', action='store_false',
                         help='Flag indicating the need to create an image')
+    parser.add_argument('--output_image_path', type=str,
+                        default='examples/output_1.png',
+                        help='The path to the created infographic')
     args = parser.parse_args()
 
     get_primary_colors(args.image_path, args.number_of_colors,
-                       args.create_image)
+                       args.create_image, args.output_image_path)
 
 
 if __name__ == '__main__':

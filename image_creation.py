@@ -151,7 +151,7 @@ def plot_color_bar(ratio_colors: List[float],
 def create_output_image(image: NDArray[(Any, Any, 3), np.int],
                         cluster_capacity: Dict[int, int],
                         center_colors: NDArray[(Any, 3), np.int],
-                        image_path: Optional[str] = None) -> None:
+                        output_image_path: Optional[str] = None) -> None:
     """Creating an image with the results of calculating the primary colors.
 
     Creates an image which is consisting of three parts arranged
@@ -172,7 +172,7 @@ def create_output_image(image: NDArray[(Any, Any, 3), np.int],
     center_colors : np.ndarray((N, 3), dtype=int)
         A container is storing the RGB values of each of the primary
         colors of the image (number of colors equals N).
-    image_path : None (default) or str
+    output_image_path : None (default) or str
         The path where the resulting image will be saved.
         If the value None (default) is passed, the image will be saved
         in 'examples/output_1.png'.
@@ -209,8 +209,8 @@ def create_output_image(image: NDArray[(Any, Any, 3), np.int],
                frameon=False, fontsize='large', ncol=column_number)
 
     plt.tight_layout(h_pad=5.0)
-    if image_path is None:
+    if output_image_path is None:
         plt.savefig('examples/output_1.png')
     else:
-        plt.savefig(image_path)
+        plt.savefig(output_image_path)
     plt.close(output_image)
