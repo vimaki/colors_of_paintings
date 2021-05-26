@@ -18,9 +18,8 @@ get_primary_colors.py
 
 import asyncio
 import numpy as np
-from collections.abc import Callable
 from functools import partial
-from typing import List
+from typing import Callable, List
 
 import get_primary_colors
 
