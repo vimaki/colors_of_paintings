@@ -37,7 +37,7 @@ want to test its work, then type the name of the bot
 
 ## Examples of processed images
 
-Input Images | Output Images
+|<div style="width: 45%">Input Images</div> | <div style="width: 45%">Output Images</div>|
 :-----------:|:-------------:
 ![input_1](/examples/input_1.png) | ![output_1](/examples/output_1.png)
 ![input_2](/examples/input_2.bmp) | ![output_2](/examples/output_2.png)
