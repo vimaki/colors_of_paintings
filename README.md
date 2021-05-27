@@ -37,10 +37,9 @@ want to test its work, then type the name of the bot
 
 ## Examples of processed images
 
-![input_1](/examples/input_1.png) ![output_1](/examples/output_1.png)
-
-![input_2](/examples/input_2.bmp) ![output_2](/examples/output_2.png)
-
-![input_3](/examples/input_3.jpeg) ![output_3](/examples/output_3.png)
-
-![input_4](/examples/input_4.jpg) ![output_4](/examples/output_4.png)
+Input Images | Output Images
+:-----------:|:-------------:
+![input_1](/examples/input_1.png) | ![output_1](/examples/output_1.png)
+![input_2](/examples/input_2.bmp) | ![output_2](/examples/output_2.png)
+![input_3](/examples/input_3.jpeg) | ![output_3](/examples/output_3.png)
+![input_4](/examples/input_4.jpg) | ![output_4](/examples/output_4.png)
