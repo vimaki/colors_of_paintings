@@ -17,6 +17,7 @@ infrastructure/ | Sample images for running tests
 test_get_primary_colors.py | Tests for module get_primary_colors.py
 test_image_creation.py | Tests for module image_creation.py
 .gitignore | A list of files and folders that do not need to be uploaded to the repository
+Aptfile | File for downloading dependencies on heroku
 Procfile | Specifies the commands that are executed by the app on startup
 async_business_logic_call.py | A module is containing asynchronous access to the web application's business logic
 bot.py | A module is containing the logic of the Telegram bot
