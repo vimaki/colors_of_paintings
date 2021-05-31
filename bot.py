@@ -49,12 +49,12 @@ import async_business_logic_call
 
 logging.basicConfig(level=logging.INFO)
 
-dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
-if os.path.exists(dotenv_path):
-    load_dotenv(dotenv_path)
-else:
-    logging.warning('Invalid environment variables!')
-    sys.exit(1)
+# dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
+# if os.path.exists(dotenv_path):
+#     load_dotenv(dotenv_path)
+# else:
+#     logging.warning('Invalid environment variables!')
+#     sys.exit(1)
 
 BOT_TOKEN = os.getenv('BOT_TOKEN')
 
