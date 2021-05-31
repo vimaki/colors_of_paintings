@@ -36,6 +36,8 @@ want to test its work, then type the name of the bot
 *Telegram*, click on the search result, click on the 
 `Start` button and follow the instructions.
 
+You can also open the bot by clicking on the link [t.me/colors_of_paintings_bot](https://t.me/colors_of_paintings_bot).
+
 ## Examples of processed images
 
 |<div style="width: 45%">Input Images</div> | <div style="width: 45%">Output Images</div>|
