@@ -104,6 +104,6 @@ You can also open the bot by clicking on the link [t.me/colors_of_paintings_bot]
 |<div style="width: 45%">Input Images</div> | <div style="width: 45%">Output Images</div>|
 :-----------:|:-------------:
 <img src="./examples/input_1.png" alt="input_1" width="400"/> | <img src="./examples/output_1.png" alt="output_1" width="400"/>
-<img src="./examples/input_2.png" alt="input_2" width="400"/> | <img src="./examples/output_2.png" alt="output_2" width="400"/>
-<img src="./examples/input_3.png" alt="input_3" width="400"/> | <img src="./examples/output_3.png" alt="output_3" width="400"/>
-<img src="./examples/input_4.png" alt="input_4" width="400"/> | <img src="./examples/output_4.png" alt="output_4" width="400"/>
+<img src="./examples/input_2.bmp" alt="input_2" width="400"/> | <img src="./examples/output_2.png" alt="output_2" width="400"/>
+<img src="./examples/input_3.jpeg" alt="input_3" width="400"/> | <img src="./examples/output_3.png" alt="output_3" width="400"/>
+<img src="./examples/input_4.jpg" alt="input_4" width="400"/> | <img src="./examples/output_4.png" alt="output_4" width="400"/>
